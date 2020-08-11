@@ -19,7 +19,8 @@ import { SearchPipe } from './pipes/search.pipe';
 import {HttpClientModule} from "@angular/common/http";
 import { ShoppingItemComponent } from './shopping-list/shopping-item/shopping-item.component';
 import { AuthComponent } from './auth/auth.component';
-import { SignupComponent } from './signup/signup.component';
+import {SignupComponent} from "./auth/signup/signup.component";
+import { LoginComponent } from './auth/login/login.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { SignupComponent } from './signup/signup.component';
     ShoppingItemComponent,
     AuthComponent,
     SignupComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

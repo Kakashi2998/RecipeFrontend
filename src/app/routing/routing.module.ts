@@ -6,6 +6,8 @@ import {RecipeDetailComponent} from "../recipe/recipe-detail/recipe-detail.compo
 import {RecipeListComponent} from "../recipe/recipe-list/recipe-list.component";
 import {ShoppingListComponent} from "../shopping-list/shopping-list.component";
 import {AuthComponent} from "../auth/auth.component";
+import {LoginComponent} from "../auth/login/login.component";
+import {SignupComponent} from "../auth/signup/signup.component";
 
 const routes: Routes = [
   {path: 'recipes', component: RecipeComponent, children: [
@@ -14,7 +16,10 @@ const routes: Routes = [
       {path: '', component: RecipeListComponent},
     ]},
   {path: 'shopping', component: ShoppingListComponent},
-  {path: 'auth', component: AuthComponent},
+  {path: 'auth', component: AuthComponent, children: [
+      {path: 'login', component: LoginComponent},
+      {path: 'signup', component: SignupComponent}
+    ]},
   {path: '**', redirectTo: 'recipes'}
 ]
 
