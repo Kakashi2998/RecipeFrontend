@@ -1,0 +1,5 @@
+<li class="list-group-item d-flex justify-content-between align-items-center">
+  {{ingredient.name}}
+  <span class="badge badge-primary badge-pill">{{ingredient.amount}}</span>
+  <button *ngIf="deletable" class="delete btn btn-danger" (click)="onDelete()">Delete</button>
+</li>

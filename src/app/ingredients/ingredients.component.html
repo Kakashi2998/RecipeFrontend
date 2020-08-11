@@ -1,0 +1,8 @@
+<div class="container">
+  <ul class="list-group">
+    <li class="list-group-item active">Ingredients</li>
+    <div *ngFor="let ingredient of ingredients; let i = index">
+      <app-item [ingredient]="ingredient" [index]="i" [deletable]="deletable"></app-item>
+    </div>
+  </ul>
+</div>

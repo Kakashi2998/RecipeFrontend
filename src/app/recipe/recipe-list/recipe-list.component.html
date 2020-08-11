@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <div class="col-md-4">
+    <input type="search" class="form-control" placeholder="Search" style="border: 1px solid green" [(ngModel)]="searchString">
+  </div>
+  <br><br>
+  <div class="row">
+    <div class="col-auto" *ngFor="let recipe of recipes | search: searchString">
+        <app-recipe-item [recipe]="recipe" class="recipeItem" (bookmark)="onBookmark($event)"></app-recipe-item>
+    </div>
+  </div>
+</div>

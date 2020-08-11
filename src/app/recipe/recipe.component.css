@@ -1,0 +1,12 @@
+.sidebar{
+  position: fixed;
+  min-height: 100%;
+  width: 300px;
+}
+.recipes{
+  padding-left: 16%;
+  padding-top: 2%;
+}
+.nav-link{
+  color: black;
+}

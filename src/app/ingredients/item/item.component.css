@@ -1,0 +1,6 @@
+.delete{
+  display: none;
+}
+li:hover .delete {
+  display: inline-block;
+}
