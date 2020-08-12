@@ -17,7 +17,7 @@ const routes: Routes = [
     ]},
   {path: 'shopping', component: ShoppingListComponent},
   {path: 'auth', component: AuthComponent, children: [
-      {path: 'login', component: LoginComponent},
+      {path: '', component: LoginComponent},
       {path: 'signup', component: SignupComponent}
     ]},
   {path: '**', redirectTo: 'recipes'}
