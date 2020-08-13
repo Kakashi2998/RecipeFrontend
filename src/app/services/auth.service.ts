@@ -9,6 +9,8 @@ export class AuthService {
   token: string;
   username: String = 'Login';
   isLoggedIn = false;
+  email: string;
+  imageUrl: string;
 
   constructor(private http: HttpClient) { }
 

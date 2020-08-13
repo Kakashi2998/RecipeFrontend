@@ -7,14 +7,19 @@
         <path fill-rule="evenodd" d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5z"/>
       </svg><br>
       <b style="font-size: larger">LOGIN</b>
-      <div class="error" *ngIf="invalidLogin"><b>Invalid Username or Password</b></div>
     </div>
 
-    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" >
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" formControlName="email">
-      <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" formControlName="password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
-    </form>
+    <div class="container mt-5">
+      <div class="row mt-5">
+        <div class="col-md-4 mt-2 m-auto ">
+          <button class="login-Btn" #loginRef>
+            Login with Google<img class="social-btn-icon" alt="Login with Google" src="https://hrcdn.net/fcore/assets/google-colored-20b8216731.svg">
+          </button>
+        </div>
+      </div>
+
+    </div>
+
 
     <div id="formFooter">
       Do not have an account, <a routerLink="/auth/signup">Sign Up</a><br>
@@ -23,3 +28,4 @@
 
   </div>
 </div>
+
