@@ -20,7 +20,6 @@ export class AuthComponent implements OnInit {
   }
 
   async initGoogleAuth(): Promise<void> {
-    console.log('init called');
     return  new Promise((resolve) => {
       gapi.load('auth2', resolve);
     }).then(async () => {
@@ -38,11 +37,13 @@ export class AuthComponent implements OnInit {
       await this.authInstance.signIn().then(
         user => {
           this.user = user
+          console.log(this.user);
           this.authService.username = this.user['Ot']['Cd'];
-          this.authService.isLoggedIn = true;
           this.authService.email = this.user['Ot']['yu'];
           this.authService.token = this.user['wc']['id_token'];
           this.authService.expiresAt = this.user['wc']['expires_at'];
+          this.authService.imageUrl = this.user['Ot']['PK'];
+          this.authService.isLoggedIn = true;
           this.router.navigate(['/recipes']);
         },
         error => {});
