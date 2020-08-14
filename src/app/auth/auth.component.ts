@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {AuthService} from "../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-auth',
@@ -7,9 +10,43 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
+  private authInstance: any;
+  private user: any;
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
+  constructor(private http: HttpClient, private authService: AuthService, private router: Router) {
+  }
+
+  async initGoogleAuth(): Promise<void> {
+    console.log('init called');
+    return  new Promise((resolve) => {
+      gapi.load('auth2', resolve);
+    }).then(async () => {
+      await gapi.auth2
+        .init({ client_id: '136432329016-882rg5sca18532vqpu2b24j7m6s0sg43.apps.googleusercontent.com' })
+        .then(auth => {
+          this.authInstance = auth;
+        });
+    });
+  }
+
+  async authenticate(): Promise<gapi.auth2.GoogleUser> {
+    await this.initGoogleAuth();
+    return new Promise(async () => {
+      await this.authInstance.signIn().then(
+        user => {
+          this.user = user
+          this.authService.username = this.user['Ot']['Cd'];
+          this.authService.isLoggedIn = true;
+          this.authService.email = this.user['Ot']['yu'];
+          this.authService.token = this.user['wc']['id_token'];
+          this.authService.expiresAt = this.user['wc']['expires_at'];
+          this.router.navigate(['/recipes']);
+        },
+        error => {});
+    });
+  }
 
 }

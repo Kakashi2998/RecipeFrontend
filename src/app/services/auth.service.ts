@@ -11,6 +11,7 @@ export class AuthService {
   isLoggedIn = false;
   email: string;
   imageUrl: string;
+  expiresAt: number;
 
   constructor(private http: HttpClient) { }
 

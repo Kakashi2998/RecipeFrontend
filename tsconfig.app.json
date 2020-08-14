@@ -2,7 +2,7 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "types": ["gapi", "gapi.auth2"],
+    "types": ["gapi.auth2"],
     "outDir": "./out-tsc/app"
   },
   "files": [

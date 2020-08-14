@@ -1,4 +1,4 @@
-import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -19,8 +19,6 @@ import { SearchPipe } from './pipes/search.pipe';
 import {HttpClientModule} from "@angular/common/http";
 import { ShoppingItemComponent } from './shopping-list/shopping-item/shopping-item.component';
 import { AuthComponent } from './auth/auth.component';
-import {SignupComponent} from "./auth/signup/signup.component";
-import { LoginComponent } from './auth/login/login.component';
 
 
 @NgModule({
@@ -40,8 +38,6 @@ import { LoginComponent } from './auth/login/login.component';
     SearchPipe,
     ShoppingItemComponent,
     AuthComponent,
-    SignupComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule,
