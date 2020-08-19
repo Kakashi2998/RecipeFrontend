@@ -23,9 +23,9 @@ export class RecipeListComponent implements OnInit {
     let recipes: Recipe[] = value;
       if(filter === 'myRecipes'){
         for(const recipe of recipes){
-          if(recipe.bookmarked){
-            this.recipes.push(recipe);
-          }
+          // if(recipe.bookmarked){
+          //   this.recipes.push(recipe);
+          // }
         }
       }else{
         this.recipes = recipes;

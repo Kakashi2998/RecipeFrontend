@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
+import {async} from "@angular/core/testing";
+import {FacebookLoginProvider, GoogleLoginProvider, SocialAuthService} from "angularx-social-login";
 
 @Component({
   selector: 'app-auth',
@@ -10,44 +12,38 @@ import {Router} from "@angular/router";
 })
 export class AuthComponent implements OnInit {
 
-  private authInstance: any;
-  private user: any;
-
-  ngOnInit() {
+  ngOnInit(): void {
+    this.socialAuthService.authState.subscribe(value => {
+      console.log(value);
+      this.authService.method = value['provider'];
+      this.authService.username = value['name'];
+      this.authService.email = value['email'];
+      this.authService.imageUrl = value['photoUrl'];
+      if(this.authService.method === 'GOOGLE'){
+        this.authService.token = value['idToken']
+      }
+      else{
+        this.authService.token = value['authToken']
+      }
+      this.authService.isLoggedIn = true;
+      this.router.navigate(['/recipes'])
+    })
   }
 
-  constructor(private http: HttpClient, private authService: AuthService, private router: Router) {
+  constructor(private socialAuthService: SocialAuthService, private authService: AuthService, private router: Router) { }
+
+
+  signInWithFB(): void {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 
-  async initGoogleAuth(): Promise<void> {
-    return  new Promise((resolve) => {
-      gapi.load('auth2', resolve);
-    }).then(async () => {
-      await gapi.auth2
-        .init({ client_id: '136432329016-882rg5sca18532vqpu2b24j7m6s0sg43.apps.googleusercontent.com' })
-        .then(auth => {
-          this.authInstance = auth;
-        });
-    });
+  signInWithGoogle(): void {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
-  async authenticate(): Promise<gapi.auth2.GoogleUser> {
-    await this.initGoogleAuth();
-    return new Promise(async () => {
-      await this.authInstance.signIn().then(
-        user => {
-          this.user = user
-          console.log(this.user);
-          this.authService.username = this.user['Ot']['Cd'];
-          this.authService.email = this.user['Ot']['yu'];
-          this.authService.token = this.user['wc']['id_token'];
-          this.authService.expiresAt = this.user['wc']['expires_at'];
-          this.authService.imageUrl = this.user['Ot']['PK'];
-          this.authService.isLoggedIn = true;
-          this.router.navigate(['/recipes']);
-        },
-        error => {});
-    });
+  signOut(): void {
+    this.socialAuthService.signOut();
   }
+
 
 }

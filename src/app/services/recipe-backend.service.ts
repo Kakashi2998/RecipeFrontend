@@ -20,7 +20,8 @@ export class RecipeBackendService{
         return new Observable<Recipe[]>();
       }
       return this.http.get('http://localhost:8080/api/recipes',
-        {headers: new HttpHeaders({'Authorization':'Bearer ' + this.authService.token})})
+        {headers: new HttpHeaders({'Authorization':'Bearer ' + this.authService.token,
+            'Method':this.authService.method})})
       .pipe(map(value => {
         return <Recipe[]>value;
       }));
@@ -32,7 +33,8 @@ export class RecipeBackendService{
       return new Observable<Recipe>();
     }
     return this.http.get('http://localhost:8080/api/recipes/' + (id),
-    {headers: new HttpHeaders({'Authorization':'Bearer ' + this.authService.token})})
+      {headers: new HttpHeaders({'Authorization':'Bearer ' + this.authService.token,
+          'Method':this.authService.method})})
       .pipe(map(value => {
         return <Recipe>value;
       }));

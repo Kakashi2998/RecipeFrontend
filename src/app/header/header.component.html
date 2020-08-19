@@ -15,7 +15,14 @@
         <a class="nav-link" routerLink="/shopping">Shopping</a>
       </li>
     </ul>
-      <a class="nav-link" routerLink="/auth">{{authService.username}}</a>
+    <div class="nav-item dropdown" >
+      <button class="dropdown-toggle btn btn-dark" >{{authService.username}}</button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Logout</a>
+        <a class="dropdown-item" href="#">Logout</a>
+        <a class="dropdown-item" href="#">Logout</a>
+      </div>
       <img src="{{authService.imageUrl}}" alt="xxx" class="avatar">
+    </div>
   </div>
 </nav>
